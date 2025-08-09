@@ -1,27 +1,31 @@
-import type { Movie } from '../../types/movie';
-import styles from './MovieGrid.module.css';
+import React from "react";
+import type { Movie } from "../../types/movie"; 
+import css from "./MovieGrid.module.css";
 
 interface MovieGridProps {
   movies: Movie[];
-  onSelect: (movie: Movie) => void;
+  onSelect: React.Dispatch<React.SetStateAction<Movie | null>>;
 }
 
-export default function MovieGrid({ movies, onSelect }: MovieGridProps) {
+const MovieGrid: React.FC<MovieGridProps> = ({ movies, onSelect }) => {
   return (
-    <ul className={styles.grid}>
+    <div className={css.grid}>
       {movies.map((movie) => (
-        <li key={movie.id}>
-          <div className={styles.card} onClick={() => onSelect(movie)}>
-            <img
-              className={styles.image}
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              loading="lazy"
-            />
-            <h2 className={styles.title}>{movie.title}</h2>
-          </div>
-        </li>
+        <div
+          key={movie.id}
+          className={css.card}
+          onClick={() => onSelect(movie)}
+        >
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+            className={css.poster}
+          />
+          <h3>{movie.title}</h3>
+        </div>
       ))}
-    </ul>
+    </div>
   );
-}
+};
+
+export default MovieGrid;
