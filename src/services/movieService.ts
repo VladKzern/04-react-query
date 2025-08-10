@@ -1,5 +1,10 @@
 import axios from 'axios';
-import type { FetchMoviesResponse } from '../types/api';
+import type { Movie } from '../types/movie';
+
+interface FetchMoviesResponse {
+  results: Movie[];
+  total_pages: number;
+}
 
 const API_URL = 'https://api.themoviedb.org/3/search/movie';
 

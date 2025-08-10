@@ -4,7 +4,7 @@ import css from "./MovieGrid.module.css";
 
 interface MovieGridProps {
   movies: Movie[];
-  onSelect: React.Dispatch<React.SetStateAction<Movie | null>>;
+  onSelect: (movie: Movie) => void; 
 }
 
 const MovieGrid: React.FC<MovieGridProps> = ({ movies, onSelect }) => {
